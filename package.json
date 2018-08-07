@@ -1,0 +1,10 @@
+{
+  "name": "todolist001-mrpgvb",
+  "description": "",
+  "homepage": "https://stackblitz.com/edit/todolist001-mrpgvb",
+  "dependencies": {
+    "rxjs": "6.2.2",
+    "partial-js": "1.1.5"
+  },
+  "version": "1.0.0"
+}
