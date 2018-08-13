@@ -5,10 +5,10 @@ import { todo, STATE_INIT } from './todoReducer.js';
 const stateStore = () => {
 
   let store$ = new Subject();
-  let state$ = new BehaviorSubject();
+  let state$ = new Subject();
   let previousState;
   let reducers;
-  let listeners;
+  // let listeners;
 
   function combineReducer() {
     // { addTodo : addTodo  }
@@ -18,7 +18,7 @@ const stateStore = () => {
 
   function createStore(reducerss, stateInit) {
     reducers = reducerss;
-    // state$.next({currentState:stateInit}); 
+    state$.next({currentState:stateInit}); 
 
     function dispatch(action) {
       store$.next(action);
