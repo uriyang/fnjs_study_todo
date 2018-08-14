@@ -28,7 +28,6 @@ export class NewTaskComponet extends HTMLElement {
   }
 
   connectedCallback() {
-
     renderEl(this, newTaskComponetTemplate);
 
     let label$ = $("label", this);
@@ -47,7 +46,7 @@ export class NewTaskComponet extends HTMLElement {
 
     addEvent('click', () => this.deleteTask())
       (deleteButton$);
-
+   
   }
 
 
@@ -57,13 +56,13 @@ export class NewTaskComponet extends HTMLElement {
 
   editTask() {
     console.log("Edit Task...");
-    // console.log(this);
-
+    
     let listItem = $('li', this);
     let editInput$ = $('input[type=text]', listItem);
     let label$ = $('label', listItem);
 
     let containsClass = hasClass(listItem, 'editMode');
+    
     if (containsClass) {
       this.todoDetail = editInput$.value;
       label$.innerText = editInput$.value;

@@ -13,7 +13,6 @@ export class CompleteTasksCompoent extends HTMLElement {
     render(this, completeTasksCompoentTemplate);
     this.incompleteTasks$ = $('#incomplete-tasks', this.shadowRoot);
     this.sub = store.subscribe(this.obs);
-
   }
 
   // 컴포넌트가 DOM에서 제거되면 구독 해지
