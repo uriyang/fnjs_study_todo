@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Todo App</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8">
+
+  <script src="js/function.js"></script>
+  <script src="js/$.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <p>
+      <label for="new-task">Add Item</label>
+      <input id="new-task" type="text">
+      <button class="create">Add</button>
+    </p>
+  </div>
+
+  <script>
+    const tasks_template = _ => `
+      <h3>Todo</h3>
+        <ul id="incomplete-tasks">
+          <li>
+            <input type="checkbox">
+            <label>Pay Bills</label>
+            <input type="text">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </li>
+          <li class="editMode">
+            <input type="checkbox">
+            <label>Go Shopping</label>
+            <input type="text" value="Go Shopping">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </li>
+        </ul>
+    `;
+
+    const complete_template = _ => `
+      <h3>Completed</h3>
+      <ul id="completed-tasks">
+        <li>
+          <input type="checkbox" checked="">
+          <label>See the Doctor</label>
+          <input type="text">
+          <button class="edit">Edit</button>
+          <button class="delete">Delete</button>
+        </li>
+      </ul>
+    `;
+
+    // log($.el(tasks_template))
+    /* $('.create').onclick = function () {
+      // $.append($('.container'), $.el(tasks_template()));
+      pipe( // pipe에 넣으려면 CURRY 사용이 필수
+        tasks_template,                        // tasks_template를
+        $.el,                                  // createElement해서
+        $.append($('.container')),             // .container에 append 한다.
+        function (editorEl) {
+          // $.find('input[type="checkbox"]')(editorEl).onclick = console.log
+          go(editorEl,                        // append한 객체(editorEl)
+            $.find('input[type="checkbox"]'),
+            btn => btn.onclick = log
+            // log
+          )
+          // editorEl.querySelectorAll('input[type="checkbox"]').onclick = console.log;
+        }
+        // $.find('input[type="checkbox"]'),
+        // chk => chk.onclick = log
+      )();
+    }*/
+
+    const returnF = () => {
+      return false;
+    }
+
+    $.addEvent($('.create'), 'click', pipe(
+      tasks_template,
+      $.el,
+      $.append($('.container')),
+      function (editorEl) {
+        $.on(editorEl,
+          // $.find('input[type="checkbox"]'),
+          // btn => btn.onclick = log
+          'click',
+          'input[type="checkbox"]',
+          function (e) {
+            log('currentTarget:', e.currentTarget);
+            log('target:', e.target)
+          }
+        )
+      }
+    ));
+  </script>
+</body>
+
+</html>
